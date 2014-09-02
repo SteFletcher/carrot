@@ -1,0 +1,13 @@
+$widget_color: #0095DD;
+.dancingbars{
+	transform: scale(1);
+	.bar{
+		color: $widget_color;
+	}
+}
+
+
+@keyframes bounce {
+	0% { }
+
+}

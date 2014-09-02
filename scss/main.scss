@@ -1,0 +1,54 @@
+@import "bourbon/bourbon";
+@import "neat/neat";
+$niceblue:  #0089cc;
+$niceblue2:#006Acc;
+  html, body {
+  height: 100%;
+  min-height: 100%;
+}
+
+$coolblue: #0095DD;
+audio{
+  display: none;
+}
+#music-table{
+}
+#container {
+  @include outer-container;
+  @include shift(2);
+  @include span-columns(5);
+  
+  @include border-top-radius(5px);
+  @include border-bottom-radius(5px);
+  @include border-left-radius(5px);
+  @include border-right-radius(5px);
+  
+  -moz-box-shadow:    0px -1px 5px 0px #ccc;
+  -webkit-box-shadow: 0px -1px 5px 0px #ccc;
+  box-shadow:         0px -1px 5px 0px #ccc;
+
+  #left-column {
+    @include shift(2);
+    @include span-columns(4);
+  }
+  #right-column {
+    @include span-columns(4);
+  }
+}
+
+.title {
+  font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
+  text-transform: uppercase;
+  font-size: 92px;
+  color: #f1ebe5;
+  text-shadow: 2px 2px 0px #c4b59d, 0 0px 1px #fff;
+  font-weight: bold;
+  text-align: center;
+  background: linear-gradient(to bottom, #ece4d9 0%, #e9dfd1 100%);
+  transform: translate(-50%, -50%);
+  border-radius: 20px;
+}
+
+svg {
+  display: inherit;
+}

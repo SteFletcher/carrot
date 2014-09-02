@@ -1,0 +1,11 @@
+@import "./main.scss";
+.gtrend, .gpoint{
+	stroke: $coolblue;
+	stroke-width: 2;
+	fill: #7FC9ED;
+	fill-opacity: 1;
+}
+.gpoint{
+	fill: white;
+	fill-opacity: 1;
+}

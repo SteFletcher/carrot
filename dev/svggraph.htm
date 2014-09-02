@@ -1,0 +1,40 @@
+<svg class="grid" viewBox="0 0 {{width}} {{height}}" preserveAspectRatio="xMaxYMax" width="{{math 1 '+' width}}px" height="{{math 1 '+' height}}px"  version="1.1" xmlns="http://www.w3.org/2000/svg" >
+        <path
+       id="horizGridLines"
+       d="M 0 {{height}}
+       l {{width}}, 0
+  {{#times numberOfHorizGridLines}}
+       m -{{../width}}  -{{../graduationX}}
+       l {{../width}}, 0
+  {{/times}}
+       "
+       fill-opacity="0"
+       style="stroke:#0095DD; shape-rendering:crispEdges"/>        
+
+       <path id="vertGrid"
+       d="M 0 0
+       l 0, {{height}}
+  {{#times numberOfVertGridLines}}
+       m {{../graduationX}} -{{../height}}
+       l 0, {{../height}}
+  {{/times}}
+       "
+       fill-opacity="0"
+       style="stroke:#0095DD; stroke-width:1px; shape-rendering:crispEdges"/>
+
+      <g class="gtrend">
+        <path d="M 0 {{height}}
+          {{#each plotPoints}}
+            L {{x}}, {{math ../height '-' y}}
+          {{/each}}
+          l 0, {{finalDrop}}"/>
+
+      </g>
+       <g class="gpoint">
+        {{#each plotPoints}}
+          <circle cx="{{x}}" cy="{{math ../height '-' y}}" r="5" />
+        {{/each}}
+      </g>
+
+          <circle cx="0" cy="0" r="5" style="display:none" id="hoverWidget"/>
+</svg>
