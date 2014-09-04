@@ -1,3 +1,25 @@
+function count(obj) {
+
+    if (obj.__count__ !== undefined) { // Old FF
+        return obj.__count__;
+    }
+
+    if (Object.keys) { // ES5 
+        return Object.keys(obj).length;
+    }
+
+    // Everything else:
+    var c = 0, p;
+    for (p in obj) {
+        if (obj.hasOwnProperty(p)) {
+            c += 1;
+        }
+    }
+
+    return c;
+
+}
+
 $(document).ready(function() {
     registerHandlebarsHelpers();
     var _console = window.console;
@@ -13,25 +35,9 @@ $(document).ready(function() {
     //     trackUri: './audio/dollar.mp3',
     //     title: 'Alo Bloc - Dollar'
     // });
-    loadSVGBarChart();
+    //loadSVGBarChart();
 
-    $('#svgchart').svgBarGraph({
-        width: 400,
-        height: 100,
-        graduationX: 50,
-        graduationY: 50,
-        plotPoints: [{
-            x: 0,
-            y: 100
-        }, {
-            x: 50,
-            y: 10
-        }, {
-            x: 100,
-            y: 10
-        }, {
-            x: 230,
-            y: 50
-        }]
-    });
+    loadResults();
+    $('#results_table').resultsTable({uri:'/data/results.json'});
 });
+
