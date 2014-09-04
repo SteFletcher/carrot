@@ -4,7 +4,7 @@ var concat = require('gulp-concat'),
     watch = require('gulp-watch'),
     debug = require('gulp-debug'),
     gutil = require('gulp-util'),
-    sass = require('gulp-ruby-sass');
+    sass = require('gulp-sass');
 
 console.log("loading....");
 
