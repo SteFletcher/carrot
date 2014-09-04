@@ -2829,14 +2829,15 @@ function loadResults() {
         var _this = this;
 
         $.getJSON( options.uri, function( data ) {
-            $.get('/results_template.htm',
-                function(data, status) {
-                    debugger;
-                    var renderer = Handlebars.compile(data);
-                    console.log(_options);
-                    var result = renderer(_options);
-                    _this.html(result);
-            });
+        });
+        
+        $.get('/results_template.htm',
+            function(data, status) {
+                debugger;
+                var renderer = Handlebars.compile(data);
+                console.log(_options);
+                var result = renderer(_options);
+                _this.html(result);
         });
     }
 }

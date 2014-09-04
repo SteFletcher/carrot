@@ -3,11 +3,12 @@ var gulp = require('gulp');
 var concat = require('gulp-concat'),
     watch = require('gulp-watch'),
     debug = require('gulp-debug'),
-    gutil = require('gulp-util');
+    gutil = require('gulp-util'),
+    sass = require('gulp-ruby-sass');
 
 console.log("loading....");
 
-gulp.task('css', function() {
+gulp.task('css', ['sassy'], function() {
     gulp.src('./dev/css/*.css')
         .pipe(concat('site.css'))
     //.pipe(minifyCSS())
@@ -29,6 +30,18 @@ gulp.task('js', function() {
 
 });
 
+// Compile Our Sass
+gulp.task('sassy', ['clean'], function() {
+    gulp.src('./scss/**/*.scss')
+        .pipe(sass({
+            style: 'compact'
+        }))
+        .pipe(concat('site.css'))
+       // .pipe(prefix('last 1 version'))
+        .pipe(gulp.dest('./dev/css'));
+
+    console.log("sassy complete!");
+});
 
 gulp.task('default', ['watch'], function() {
     startExpress();
@@ -36,6 +49,9 @@ gulp.task('default', ['watch'], function() {
 });
 
 gulp.task('watch', function() {
+
+    console.log("watching scss!");
+    gulp.watch('./scss/*.scss', ['css']);
 
     console.log("watching js!");
     var jswatcher = gulp.watch('./js/*.js', ['js']);
