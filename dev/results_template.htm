@@ -1,22 +1,30 @@
+
+<div id="results_container">
 <table class="results-table">
     <thead>
         <tr>
+            <th>Trend</th>
             <th>URI</th>
             <th>Bytes</th>
             <th>Avg Time</th>
             <th>Max Bytes</th>
             <th>Max Time</th>
+            <th>#</th>
         </tr>
     </thead>
     <tbody>
         {{#results}}
         <tr>
+            <td>O</td>
             <td>{{uniqueURI}}</td>
-            <td>{{avg_bytes}}</td>
-            <td>{{avg_elapsed}}</td>
-            <td>{{max_elapsed}}</td>
-            <td>{{max_bytes}}</td>
+            <td>{{toKiloBytes avg_bytes}}</td>
+            <td>{{toSeconds avg_elapsed}}</td>
+            <td>{{toKiloBytes max_bytes}}</td>
+            <td>{{toSeconds max_elapsed}}</td>
+            <td>{{count}}</td>
         </tr>
         {{/results}}
     </tbody>
 </table>
+
+</div>

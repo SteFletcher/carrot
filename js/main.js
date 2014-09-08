@@ -38,6 +38,6 @@ $(document).ready(function() {
     //loadSVGBarChart();
 
     loadResults();
-    $('#results_table').resultsTable({uri:'/data/results.json'});
+    $('#results_table').resultsTable({dataFolder:'/data/'});
 });
 

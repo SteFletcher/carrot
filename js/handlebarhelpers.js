@@ -25,4 +25,16 @@ function registerHandlebarsHelpers() {
         radius = parseFloat(radius);
         return 2 * Math.PI * radius;
     });
+
+    Handlebars.registerHelper("toSeconds", function(microseconds) {
+        microseconds = microseconds/1000000;
+        // return microseconds;
+        return numeral(microseconds).format('0,0.000')+'s';
+    });
+
+    Handlebars.registerHelper("toKiloBytes", function(bytes) {
+        bytes = bytes/1000;
+        // return bytes;
+        return numeral(bytes).format('0,0.00')+'KB';
+    });
 }
