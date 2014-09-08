@@ -1,12 +1,22 @@
 <table class="results-table">
     <thead>
         <tr>
-            <th>F</th>
+            <th>URI</th>
+            <th>Bytes</th>
+            <th>Avg Time</th>
+            <th>Max Bytes</th>
+            <th>Max Time</th>
         </tr>
     </thead>
     <tbody>
+        {{#results}}
         <tr>
-            <td>A</td>
+            <td>{{uniqueURI}}</td>
+            <td>{{avg_bytes}}</td>
+            <td>{{avg_elapsed}}</td>
+            <td>{{max_elapsed}}</td>
+            <td>{{max_bytes}}</td>
         </tr>
+        {{/results}}
     </tbody>
 </table>
