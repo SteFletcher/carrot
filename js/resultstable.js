@@ -19,6 +19,8 @@ function loadResults() {
                     var renderer = Handlebars.compile(frag.template);
                     var result = renderer(frag.data);
                     _this.html(result);
+                }).then(function(){
+                    $(_this).find('table').tablesorter();
                 });
     }
 }
