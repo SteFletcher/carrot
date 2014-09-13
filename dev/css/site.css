@@ -166,6 +166,10 @@ body {
 /*em {
 	font-style: italic; 
 }*/
+.perf_stat_selector_container {
+  width: 90%;
+  margin: 0px auto; }
+
 table {
   font-size: 12px;
   line-height: 24px;
