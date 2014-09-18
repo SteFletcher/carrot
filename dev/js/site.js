@@ -4568,7 +4568,9 @@ function loadResults() {
                         }),
                         $.getJSON( _options.dataFolder + '/selectorItems.json', function( data ) {
                             frag.data = data;
-                        }).fail(function(jqXHR, textStatus, errorThrown){console.log("failed:"+errorThrown)})
+                        }).fail(function(jqXHR, textStatus, errorThrown){
+                                console.log("failed:"+errorThrown)
+                        })
                     
                 ).done(function(){                    
                     var renderer = Handlebars.compile(frag.template);
@@ -4602,7 +4604,9 @@ function loadResults() {
             $.when(
                 $.getJSON( dataFolder + jsonfilename, function( data ) {
                     frag.data = data;
-                }).fail(function(jqXHR, textStatus, errorThrown){console.log("failed:"+errorThrown)}),
+                }).fail(function(jqXHR, textStatus, errorThrown){
+                    console.log("failed:"+errorThrown)
+                }),
                 $.get('/results_template.htm',
                     function(data, status) {
                         frag.template = data;                        
