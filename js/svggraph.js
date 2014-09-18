@@ -28,14 +28,14 @@ function loadSVGBarChart() {
                 console.log(_options);
                 var result = renderer(_options);
                 _this.html(result);
-                var hoverWidget = _this.find('#hoverWidget');
-                // add click handlers to points
-                hoverWidget.show();
-                _this.mousemove(function(event) {
-                    hoverWidget.attr({
-                        'cx': event.clientX
-                    });
-                });
+                // var hoverWidget = _this.find('#hoverWidget');
+                // // add click handlers to points
+                // hoverWidget.show();
+                // _this.mousemove(function(event) {
+                //     hoverWidget.attr({
+                //         'cx': event.clientX
+                //     });
+                // });
             });
 
 

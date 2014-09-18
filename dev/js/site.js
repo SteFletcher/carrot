@@ -3857,7 +3857,8 @@ $(document).ready(function() {
     //     trackUri: './audio/dollar.mp3',
     //     title: 'Alo Bloc - Dollar'
     // });
-    //loadSVGBarChart();
+    loadSVGBarChart();
+    // $('#svgchart').svgBarGraph({"plotPoints" : [{}]});
 
     loadResults();
     $('#results_table').resultsTable({dataFolder:'/data/'});
@@ -4558,23 +4559,36 @@ function loadResults() {
         var _options = $.extend(defaults, options);
         var _this = this;
         var frag = {template: null, data: null};
+        var selector = {template: null, data: null};
+        var allData = {};
+
+        var loadData = function(data){
+            data.data.resultFiles.forEach(function(item){
+                console.log(item);
+                $.getJSON( _options.dataFolder + item, function( data ) {
+                    allData.push(data);
+                }).fail(function(jqXHR, textStatus, errorThrown){
+                    console.log("failed:"+errorThrown)
+                })
+            });
+        };
 
         var loadSelector = function(){
 
                 $.when(
                     $.get('/result_selector.htm',
                         function(data, status) {
-                            frag.template = data;                        
+                            selector.template = data;                        
                         }),
                         $.getJSON( _options.dataFolder + '/selectorItems.json', function( data ) {
-                            frag.data = data;
+                            selector.data = data;
                         }).fail(function(jqXHR, textStatus, errorThrown){
                                 console.log("failed:"+errorThrown)
                         })
                     
                 ).done(function(){                    
-                    var renderer = Handlebars.compile(frag.template);
-                    var result = renderer(frag.data);
+                    var renderer = Handlebars.compile(selector.template);
+                    var result = renderer(selector.data);
                     _this.append(result);
 
                 }).then(function(){
@@ -4582,10 +4596,10 @@ function loadResults() {
                         $(_this).find("option:selected" ).each(function() {
                             console.log($(this).text());
                             $(_this).find('#results_container').remove();
-                            //$(_this).resultsTable({uri: '/data/'+$(this).text()+'.json', selected:$(this).text()});
-
                             console.log(_options.dataFolder +$(this).text());
                             loadTable(_options.dataFolder, ''+$(this).text());
+                            // load data for trend analysis
+                            loadData(selector);
                         });
                     });
                 }).then(function(){     
@@ -4654,14 +4668,14 @@ function loadSVGBarChart() {
                 console.log(_options);
                 var result = renderer(_options);
                 _this.html(result);
-                var hoverWidget = _this.find('#hoverWidget');
-                // add click handlers to points
-                hoverWidget.show();
-                _this.mousemove(function(event) {
-                    hoverWidget.attr({
-                        'cx': event.clientX
-                    });
-                });
+                // var hoverWidget = _this.find('#hoverWidget');
+                // // add click handlers to points
+                // hoverWidget.show();
+                // _this.mousemove(function(event) {
+                //     hoverWidget.attr({
+                //         'cx': event.clientX
+                //     });
+                // });
             });
 
 

@@ -1,3 +1,6 @@
+
+$niceblue:  #0089cc;
+$niceblue2:#006Acc;
 body {
 	background: #fafafa;
 	color: #444;
@@ -28,18 +31,18 @@ th {
 	margin: 0px;
   	font-weight: bold;
 	position: relative;
-	border-bottom: 2px solid #444;	
+	border-bottom: 2px solid $niceblue;	
 }
 
 th.selector {
 	font-size: 12px;
 	padding: 5px 10px;
 	margin: 0px;
-	border-bottom: 0px solid #444;	
+	border-bottom: 0px solid $niceblue;	
 }
 
 td {
 	margin: 0px;
-	border-bottom: 1px solid #e8e8e8;
+	border-bottom: 1px solid $niceblue;
 	position: relative;
 }

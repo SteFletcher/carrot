@@ -35,7 +35,8 @@ $(document).ready(function() {
     //     trackUri: './audio/dollar.mp3',
     //     title: 'Alo Bloc - Dollar'
     // });
-    //loadSVGBarChart();
+    loadSVGBarChart();
+    // $('#svgchart').svgBarGraph({"plotPoints" : [{}]});
 
     loadResults();
     $('#results_table').resultsTable({dataFolder:'/data/'});
