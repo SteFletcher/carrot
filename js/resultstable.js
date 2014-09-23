@@ -13,15 +13,20 @@ function loadResults() {
         var _this = this;
         var frag = {template: null, data: null};
         var selector = {template: null, data: null};
-        var allData = {};
-
+        _this.allData = {};
         var loadData = function(data){
             data.data.resultFiles.forEach(function(item){
                 console.log(item);
+                    var tmp = {}
+                    _this.allData[item] = tmp;
                 $.getJSON( _options.dataFolder + item, function( data ) {
-                    allData.push(data);
+                    data.results.forEach(function(result){
+                        tmp[result.uniqueURI] = result;
+                    });
+                    
+                    
                 }).fail(function(jqXHR, textStatus, errorThrown){
-                    console.log("failed:"+errorThrown)
+                    console.log("failed:"+errorThrown);
                 })
             });
         };
@@ -51,23 +56,21 @@ function loadResults() {
                             $(_this).find('#results_container').remove();
                             console.log(_options.dataFolder +$(this).text());
                             loadTable(_options.dataFolder, ''+$(this).text());
-                            // load data for trend analysis
-                            loadData(selector);
                         });
+                        debugger;
                     });
                 }).then(function(){     
                         var today = new Date();
                         var yesterDaysResults = pad((today.getDate()-1)) + "-" + pad((today.getMonth() +1)) + "-" + today.getFullYear()+".json";
                         $('.perf_stat_selector option[value='+'"'+yesterDaysResults+'"'+']').prop('selected',true);
                         $('.perf_stat_selector').change();
+                            // load data for trend analysis
+                        loadData(selector);
                      }
                 );
         }     
 
         var loadTable = function(dataFolder, jsonfilename){
-            console.log(dataFolder);
-            console.log(jsonfilename);
-            console.log(dataFolder + jsonfilename);
             $.when(
                 $.getJSON( dataFolder + jsonfilename, function( data ) {
                     frag.data = data;
