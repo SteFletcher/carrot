@@ -19,8 +19,12 @@ function loadResults() {
                 console.log(item);
                     var tmp = {}
                     _this.allData[item] = tmp;
-                $.getJSON( _options.dataFolder + item, function( data ) {
-                    data.results.forEach(function(result){
+                // $.getJSON( _options.dataFolder + item, function( data ) {
+                //     data.results.forEach(function(result){
+                //         tmp[result.uniqueURI] = result;
+                //    });
+                $.getJSON( "http://localhost:8080/api/snapshot", function( data ) {
+                    data.forEach(function(result){
                         tmp[result.uniqueURI] = result;
                     });
                     
@@ -57,7 +61,6 @@ function loadResults() {
                             console.log(_options.dataFolder +$(this).text());
                             loadTable(_options.dataFolder, ''+$(this).text());
                         });
-                        debugger;
                     });
                 }).then(function(){     
                         var today = new Date();
@@ -72,10 +75,12 @@ function loadResults() {
 
         var loadTable = function(dataFolder, jsonfilename){
             $.when(
-                $.getJSON( dataFolder + jsonfilename, function( data ) {
-                    frag.data = data;
-                }).fail(function(jqXHR, textStatus, errorThrown){
-                    console.log("failed:"+errorThrown)
+                
+
+                $.getJSON( "http://localhost:8080/api/snapshot", function( data ) {
+                    data.forEach(function(result){
+                        frag.data = data;
+                    })
                 }),
                 $.get('/results_template.htm',
                     function(data, status) {
@@ -83,6 +88,7 @@ function loadResults() {
                 })
             ).done(function(){
                 var renderer = Handlebars.compile(frag.template);
+                
                 var result = renderer(frag.data);
                 _this.append(result);
             }).then(function(){

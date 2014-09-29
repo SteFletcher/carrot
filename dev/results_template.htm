@@ -13,7 +13,7 @@
         </tr>
     </thead>
     <tbody>
-        {{#results}}
+        {{#each this}}
         <tr>
             <td>O</td>
             <td>{{uniqueURI}}</td>
@@ -23,7 +23,7 @@
             <td>{{toSeconds max_elapsed}}</td>
             <td>{{count}}</td>
         </tr>
-        {{/results}}
+        {{/each}}
     </tbody>
 </table>
 
