@@ -3,10 +3,17 @@
 // BASE SETUP
 // =============================================================================
 
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/snapshots');// connect to our database
+
+
+
 // call the packages we need
 var express    = require('express'); 		// call express
 var app        = express(); 				// define our app using express
 var bodyParser = require('body-parser');
+var Snapshot     = require('./dev/models/snapshot');
+
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -35,8 +42,17 @@ router.get('/', function(req, res) {
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
-app.use('/api', router);
 
+router.route('/snapshot')
+	.get(function(req, res) {
+		Snapshot.find(function(err, snapshots) {
+			if (err){res.send(err);}
+			console.log("data..."+snapshots);
+			res.json(snapshots);
+		});
+	});
+
+app.use('/api', router);
 // START THE SERVER
 // =============================================================================
 app.listen(port);
