@@ -23,7 +23,7 @@ db.once('open', function callback () {
 	var perfResultSchema = mongoose.Schema(resultSchema);
 	// NOTE: methods must be added to the schema before compiling it with mongoose.model()
 	var Result = mongoose.model('PerfResult', perfResultSchema);
-	Result.remove();
+	
 
 	results.results.forEach(function(item){
 		var hit = new Result(item);
