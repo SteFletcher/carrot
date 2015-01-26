@@ -31,14 +31,17 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
-    // $('#track1_container').audioWidget({
-    //     trackUri: './audio/dollar.mp3',
-    //     title: 'Alo Bloc - Dollar'
-    // });
+    var bodyWidth = $(document.body).width() * 0.9;
     loadSVGBarChart();
-    // $('#svgchart').svgBarGraph({"plotPoints" : [{}]});
+    $('#svgchart').svgBarGraph({
+        "plotPoints" : [{x:10, y:14},{x:150, y:30},{x:200, y:90}, {x:400, y:20}],
+        graduationX: 200,
+        graduationY: 50,
+        width: bodyWidth,
+        height: 100
+    });
 
-    loadResults();
-    $('#results_table').resultsTable({dataFolder:'/data/'});
+    //loadResults();
+    //$('#results_table').resultsTable({dataFolder:'/data/'});
 });
 

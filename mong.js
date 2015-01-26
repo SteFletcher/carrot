@@ -25,11 +25,15 @@ db.once('open', function callback () {
 	fluffy.speak() // "Meow name is fluffy"
 	fluffy.color = "brown";
 
+for(var i=0;i<1000; i++)
+{
 
+	var fluffy = new Kitten({ name: "fluffy_"+i });
 	fluffy.save(function (err, fluffy) {
-	  if (err) return console.error(err);
-	  fluffy.speak();
-	});
+		  if (err) return console.error(err);
+		  console.log("saved "+fluffy.name);
+		});
+}
 
 	Kitten.find(function (err, kittens) {
 	  if (err) return console.error(err);

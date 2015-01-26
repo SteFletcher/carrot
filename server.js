@@ -10,7 +10,7 @@ mongoose.connect('mongodb://localhost/snapshots');// connect to our database
 
 // call the packages we need
 var express    = require('express'); 		// call express
-var app        = express(); 				// define our app using express
+var app        = express();				// define our app using express
 var bodyParser = require('body-parser');
 var Snapshot     = require('./dev/models/snapshot');
 
@@ -20,11 +20,11 @@ var Snapshot     = require('./dev/models/snapshot');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-var port = process.env.PORT || 8080; 		// set our port
+var port = process.env.PORT || 8080;		// set our port
 
 // ROUTES FOR OUR API
 // =============================================================================
-var router = express.Router(); 				// get an instance of the express Router
+var router = express.Router();				// get an instance of the express Router
 
 // middleware to use for all requests
 router.use(function(req, res, next) {
@@ -43,9 +43,9 @@ router.get('/', function(req, res) {
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
 
-router.route('/snapshot')
+router.route('/snapshot:date')
 	.get(function(req, res) {
-		Snapshot.find(function(err, snapshots) {
+		Snapshot.findByDate(function(err, snapshots) {
 			if (err){res.send(err);}
 			console.log("data..."+snapshots);
 			res.json(snapshots);

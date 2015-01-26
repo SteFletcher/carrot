@@ -150,12 +150,27 @@ svg {
 .gtrend, .gpoint {
   stroke: #0095DD;
   stroke-width: 2;
-  fill: #7FC9ED;
+  fill: none;
   fill-opacity: 1; }
 
 .gpoint {
   fill: white;
-  fill-opacity: 1; }
+  fill-opacity: 1;
+  pointer-events: all; }
+
+.gpoint circle {
+  fill: white;
+  fill-opacity: 1;
+  pointer-events: all; }
+
+circle:hover {
+  fill: green;
+  fill-opacity: 1;
+  pointer-events: all; }
+
+.svgchart {
+  width: 90%;
+  margin: 0px auto; }
 
 body {
   background: #fafafa;
