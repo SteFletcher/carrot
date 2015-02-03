@@ -67,7 +67,10 @@ function loadSVGBarChart() {
                 var $chart_popup  = $('#chart_popup');
                 $chart_popup.hide();
                 $('.gpoint circle').on('mouseover', function(event){
-                    console.log("event.target.id");
+                    var $this = $(this);
+                    var currentRadius = $this.attr('r');
+                    var hoverRadius = eval(currentRadius) + 1;
+                    $(this).attr({'r': hoverRadius});
                     $chart_popup.css({
                         position: 'fixed',
                         left: event.clientX,
@@ -75,6 +78,10 @@ function loadSVGBarChart() {
                     }).show();
                     
                 }).on('mouseout', function(event){
+                    var $this = $(this);
+                    var currentRadius = $this.attr('r');
+                    var hoverRadius = eval(currentRadius) - 1;
+                    $(this).attr({'r': hoverRadius});
                     $chart_popup.hide();
                 });
             });
